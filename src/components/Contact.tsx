@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,8 @@ const Contact: React.FC = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [currentAction, setCurrentAction] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
 
@@ -25,7 +27,6 @@ const Contact: React.FC = () => {
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
     }, 500);
-
     return () => clearInterval(cursorInterval);
   }, []);
 
@@ -34,14 +35,36 @@ const Contact: React.FC = () => {
     const actionInterval = setInterval(() => {
       setCurrentAction(prev => (prev + 1) % movingActions.length);
     }, 3000);
-
     return () => clearInterval(actionInterval);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -60,8 +83,6 @@ const Contact: React.FC = () => {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/Palak24Ol', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/palakjaiswal2401/', label: 'LinkedIn' },
-    
-     
   ];
 
   return (
@@ -180,6 +201,26 @@ const Contact: React.FC = () => {
             viewport={{ once: true }}
             className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-8 border border-purple-500/20"
           >
+            {submitStatus === 'success' && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-green-500/20 border border-green-500/40 text-green-400 px-4 py-3 rounded-lg mb-6"
+              >
+                Message sent successfully! I'll get back to you soon.
+              </motion.div>
+            )}
+
+            {submitStatus === 'error' && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-red-500/20 border border-red-500/40 text-red-400 px-4 py-3 rounded-lg mb-6"
+              >
+                Failed to send message. Please try again or contact me directly.
+              </motion.div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -231,12 +272,19 @@ const Contact: React.FC = () => {
 
               <motion.button
                 type="submit"
+                disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span>Send Message</span>
-                <Send size={18} />
+                {isSubmitting ? (
+                  <span>Sending...</span>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <Send size={18} />
+                  </>
+                )}
               </motion.button>
             </form>
           </motion.div>
