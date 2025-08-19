@@ -39,33 +39,33 @@ const Contact: React.FC = () => {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitStatus('idle');
 
-    try {
-      const response = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        throw new Error('Failed to send message');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 3000);
+    if (response.ok) {
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } else {
+      throw new Error('Failed to send message');
     }
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    setSubmitStatus('error');
+  } finally {
+    setIsSubmitting(false);
+    setTimeout(() => setSubmitStatus('idle'), 3000);
+  }
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
