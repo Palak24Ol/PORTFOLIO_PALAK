@@ -7,68 +7,56 @@ const Portfolio: React.FC = () => {
 
   const projects = [
     {
-      name: "Car Rent",
-      description: "Simplify your car rental experience with our streamlined platform. Find, book, and manage your vehicle rentals with ease.",
+      name: "MockMate : AI Mock Interview Platform",
+      description: "Master your interviews with AI-powered mock practice sessions and real-time feedback",
       tags: [
         {
-          name: "react",
+          name: "Next.js",
           color: "blue-text-gradient",
         },
         {
-          name: "mongodb",
+          name: "Firebase",
           color: "green-text-gradient",
         },
         {
-          name: "tailwind",
+          name: "Gemini Api",
           color: "pink-text-gradient",
         },
+        {
+          name: "Vapi Api",
+          color: "blue-text-gradient",
+        }
       ],
-      image: "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=800",
-      source_code_link: "https://github.com/",
-      live_demo_link: "https://example.com/",
+      image: "\ss1.png",
+      source_code_link: "https://github.com/Palak24Ol/AI-INTERVIEW",
+      live_demo_link: "https://ai-interview-24.vercel.app/splash",
     },
     {
-      name: "Job IT",
-      description: "Web application that enables users to search for job openings, view detailed job descriptions, and apply for positions.",
+      name: "Syntax Forge : Code Editor",
+      description: "Built a multi-language online code editor with real-time execution, Monaco editor integration, snippet sharing, and interactive discussions.",
       tags: [
         {
-          name: "react",
+          name: "Next.js",
           color: "blue-text-gradient",
         },
         {
-          name: "restapi",
+          name: "Convex",
           color: "green-text-gradient",
         },
         {
-          name: "scss",
+          name: "Piston Api",
           color: "pink-text-gradient",
         },
-      ],
-      image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
-      source_code_link: "https://github.com/",
-      live_demo_link: "https://example.com/",
-    },
-    {
-      name: "Trip Guide",
-      description: "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and manage their trips.",
-      tags: [
         {
-          name: "nextjs",
+          name: "ESLint",
           color: "blue-text-gradient",
         },
-        {
-          name: "supabase",
-          color: "green-text-gradient",
-        },
-        {
-          name: "css",
-          color: "pink-text-gradient",
-        },
       ],
-      image: "https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=800",
-      source_code_link: "https://github.com/",
-      live_demo_link: "https://example.com/",
+      image: "\ss2.png",
+      source_code_link: "https://github.com/Palak24Ol/my-code-editor",
+      live_demo_link: "https://my-code-editor-pink.vercel.app/",
     },
+     
     {
       name: "AI Summarizer",
       description: "An AI-powered article summarizer that transforms lengthy articles into clear and concise summaries using OpenAI GPT-4.",
@@ -90,87 +78,44 @@ const Portfolio: React.FC = () => {
       source_code_link: "https://github.com/",
       live_demo_link: "https://example.com/",
     },
-    {
-      name: "Crypto Tracker",
-      description: "Real-time cryptocurrency price tracking and portfolio management with advanced charts and market analysis.",
-      tags: [
-        {
-          name: "vue",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "firebase",
-          color: "green-text-gradient",
-        },
-        {
-          name: "chartjs",
-          color: "pink-text-gradient",
-        },
-      ],
-      image: "https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=800",
-      source_code_link: "https://github.com/",
-      live_demo_link: "https://example.com/",
-    },
-    {
-      name: "Social Media Dashboard",
-      description: "Analytics dashboard for social media management with real-time data visualization and engagement metrics.",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "nodejs",
-          color: "green-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "pink-text-gradient",
-        },
-      ],
-      image: "https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=800",
-      source_code_link: "https://github.com/",
-      live_demo_link: "https://example.com/",
-    },
+    
+      
   ];
 
   const techStack = [
-    { name: 'React', level: 95, color: 'from-blue-400 to-blue-600' },
+    { name: 'React', level: 80, color: 'from-blue-400 to-blue-600' },
     { name: 'TypeScript', level: 90, color: 'from-blue-500 to-blue-700' },
-    { name: 'Node.js', level: 85, color: 'from-green-400 to-green-600' },
-    { name: 'Python', level: 80, color: 'from-yellow-400 to-yellow-600' },
-    { name: 'PostgreSQL', level: 85, color: 'from-blue-600 to-blue-800' },
-    { name: 'MongoDB', level: 75, color: 'from-green-500 to-green-700' },
-    { name: 'AWS', level: 70, color: 'from-orange-400 to-orange-600' },
-    { name: 'Docker', level: 75, color: 'from-blue-400 to-blue-600' },
+    { name: 'Node.js', level: 70, color: 'from-green-400 to-green-600' },
+    { name: 'Python', level: 65, color: 'from-yellow-400 to-yellow-600' },
+    { name: 'Java', level: 90, color: 'from-blue-600 to-blue-800' },
+    { name: 'Firebase', level: 75, color: 'from-green-500 to-green-700' },
+    { name: 'Next.js', level: 70, color: 'from-orange-400 to-orange-600' },
+    { name: 'MySQL', level: 75, color: 'from-blue-400 to-blue-600' },
   ];
+const certificates = [
+  {
+    title: 'Machine Learning A-Z: Certificate of Completion for Udemy\'s comprehensive ML course by Kirill Eremenko',
+    issuer: 'Udemy',
+    date: '2025',
+    icon: Award,
+    link: 'https://drive.google.com/file/d/1uNAtKnS70hAKV2yyMJUFx4qrZjeSsie5/view' // replace with actual link
+  },
+  {
+    title: 'Certificate for active participation in BUILD WITH INDIA',
+    issuer: 'Hack With India',
+    date: '2025',
+    icon: Award,
+    link: 'https://example.com/build-with-india-certificate' // replace with actual link
+  },
+  {
+    title: 'ByteVerse Hackathon Certificate',
+    issuer: 'Hackslash',
+    date: '2024',
+    icon: Award,
+    link: 'https://drive.google.com/drive/folders/1QyF9uk4LWhlb-8YsKc0b7bHwBUd0HiX7' // replace with actual link
+  },
+];
 
-  const certificates = [
-    {
-      title: 'AWS Certified Solutions Architect',
-      issuer: 'Amazon Web Services',
-      date: '2023',
-      icon: Award
-    },
-    {
-      title: 'Google Cloud Professional Developer',
-      issuer: 'Google Cloud',
-      date: '2023',
-      icon: Award
-    },
-    {
-      title: 'Meta React Developer Certificate',
-      issuer: 'Meta',
-      date: '2022',
-      icon: Award
-    },
-    {
-      title: 'MongoDB Certified Developer',
-      issuer: 'MongoDB University',
-      date: '2022',
-      icon: Award
-    }
-  ];
 
   const tabs = [
     { id: 'projects', label: 'Projects', icon: Code2 },
@@ -557,7 +502,20 @@ const Portfolio: React.FC = () => {
                       <p className="text-gray-400">{cert.issuer}</p>
                     </div>
                   </div>
-                  <p className="text-purple-400 font-semibold">{cert.date}</p>
+                  <div className="flex justify-between items-center">
+                    <p className="text-purple-400 font-semibold">{cert.date}</p>
+                    <motion.a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-500/80 to-pink-500/80 text-white rounded-full text-sm font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+                    >
+                      <Eye size={16} />
+                      <span>View Certificate</span>
+                    </motion.a>
+                  </div>
                 </motion.div>
               ))}
             </motion.div>

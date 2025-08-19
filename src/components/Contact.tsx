@@ -52,16 +52,16 @@ const Contact: React.FC = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'sarah@example.com', href: 'mailto:sarah@example.com' },
-    { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567', href: 'tel:+15551234567' },
-    { icon: MapPin, label: 'Location', value: 'San Francisco, CA', href: '#' },
+    { icon: Mail, label: 'Email', value: 'heyitspalakjaiswal24@gmail.com', href: 'mailto:heyitspalakjaiswal24@gmail.com' },
+    { icon: Phone, label: 'Phone', value: '+91 94500 81431', href: 'tel:+919450081431' },
+    { icon: MapPin, label: 'Location', value: 'Gorakhpur, India'},
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
+    { icon: Github, href: 'https://github.com/Palak24Ol', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/palakjaiswal2401/', label: 'LinkedIn' },
+    
+     
   ];
 
   return (

@@ -35,10 +35,10 @@ const About: React.FC = () => {
     "Frontend Development",
     "Backend Development", 
     "UI/UX Design",
-    "Mobile Development",
-    "Cloud Architecture",
-    "DevOps & Deployment"
-  ];
+    "AI & Machine Learning",
+    "Problem Solving"
+    
+    ];
 
   // Slower floating elements
   const floatingElements = [
@@ -208,7 +208,8 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             className="text-gray-300 text-lg max-w-2xl mx-auto"
           >
-            I'm a passionate developer with 5+ years of experience creating digital solutions that make a difference.
+            Hey there! I’m Palak — part developer, part designer, full-time curious human. I love crafting digital experiences that actually make people go “whoa, that’s neat.”
+
           </motion.p>
         </motion.div>
 
@@ -233,8 +234,8 @@ const About: React.FC = () => {
             
             <motion.div className="space-y-6">
               {[
-                "I started my journey in web development 5 years ago and have been passionate about creating beautiful, functional websites ever since. I specialize in modern web technologies and love to work on projects that challenge me to grow as a developer.",
-                "When I'm not coding, you can find me exploring new design trends, contributing to open-source projects, or sharing my knowledge through technical writing and mentoring."
+                "Hey, I’m Palak — a pre-final year Computer Science student at NIT Patna who spends way too much time turning ideas into code. Whether it’s building full-stack apps, experimenting with AI, or designing clean user experiences, I love creating things that actually *do* something cool.",
+  "I enjoy solving problems (the trickier, the better), but I’ll admit — I’m just as obsessed with making things look good. Because let’s face it, tech should be smart *and* stylish. When I’m not coding, you’ll probably find me exploring design trends, learning random new skills, planning my next trip, or diving into something that sparks my curiosity."
               ].map((text, index) => (
                 <motion.p
                   key={index}
@@ -295,9 +296,9 @@ const About: React.FC = () => {
               viewport={{ once: true }}
             >
               {[
-                { value: "50+", label: "Projects", color: "text-purple-400" },
-                { value: "5+", label: "Years", color: "text-pink-400" },
-                { value: "100+", label: "Happy Clients", color: "text-cyan-400" }
+                { value: "5+", label: "Projects", color: "text-purple-400" },
+                
+                { value: "2+", label: "Years", color: "text-cyan-400" }
               ].map((stat, index) => (
                 <motion.div 
                   key={stat.label}
@@ -380,8 +381,8 @@ const About: React.FC = () => {
               >
                 {/* Personal image with transparent background */}
                 <motion.img
-                  src="/LS20250703184432-removebg-preview.png"
-                  alt="Sarah Johnson"
+                  src="/proo.jpg"
+                  alt="Palak Jaiswal"
                   className="w-full h-full object-cover object-center"
                   initial={{ scale: 1.1, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -406,28 +407,7 @@ const About: React.FC = () => {
                 />
                 
                 {/* Fewer, slower particles */}
-                {[...Array(8)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-40"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                    }}
-                    animate={{
-                      y: [0, -60, 0],
-                      x: [0, Math.sin(i) * 30, 0],
-                      opacity: [0, 0.4, 0],
-                      scale: [0, 1, 0],
-                    }}
-                    transition={{
-                      duration: 8 + Math.random() * 4, // Much slower
-                      repeat: Infinity,
-                      delay: Math.random() * 4,
-                      ease: "easeInOut"
-                    }}
-                  />
-                ))}
+                
                 
                 {/* Shimmer effect */}
                 <motion.div
@@ -445,31 +425,7 @@ const About: React.FC = () => {
               </motion.div>
 
               {/* Decorative floating elements around the image */}
-              <motion.div
-                className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  rotate: [0, 180, 360]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              
-              <motion.div
-                className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [360, 180, 0]
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
+            
             </motion.div>
           </motion.div>
         </div>

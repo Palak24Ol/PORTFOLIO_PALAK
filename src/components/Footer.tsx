@@ -27,12 +27,12 @@ const Footer: React.FC = () => {
             >
               <Heart size={16} fill="currentColor" />
             </motion.span>
-            {' '}and React
+            {' '}by Palak Jaiswal
+           
           </p>
           
-          <p className="text-gray-500 text-sm">
-            © 2024 Sarah Johnson. All rights reserved.
-          </p>
+          
+           
         </motion.div>
       </div>
     </footer>
