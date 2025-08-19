@@ -1,7 +1,8 @@
 {
   "functions": {
     "api/contact.js": {
-      "includeFiles": "**/*"
+      "maxDuration": 30,
+      "includeFiles": "api/contact.js"   
     }
   },
   "rewrites": [
