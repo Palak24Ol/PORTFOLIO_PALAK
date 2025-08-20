@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +22,11 @@ const Contact: React.FC = () => {
     "Need a Developer? I'm Here",
     "Let's Create Together"
   ];
+
+  // EmailJS Configuration - REPLACE THESE WITH YOUR ACTUAL IDs
+  const EMAILJS_SERVICE_ID = 'service_6r6elgm'; // Your service ID
+  const EMAILJS_TEMPLATE_ID = 'template_azswdqv'; // Get from EmailJS dashboard
+  const EMAILJS_USER_ID = '37WqFSX3W4wPYf751'; // Get from EmailJS dashboard
 
   // Toggle cursor every 500ms
   useEffect(() => {
@@ -44,22 +50,23 @@ const Contact: React.FC = () => {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: 'heyitspalakjaiswal24@gmail.com',
+          reply_to: formData.email
         },
-        body: JSON.stringify(formData),
-      });
+        EMAILJS_USER_ID
+      );
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        throw new Error('Failed to send message');
-      }
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error sending email:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
