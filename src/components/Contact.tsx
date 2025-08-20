@@ -44,42 +44,23 @@ const Contact: React.FC = () => {
   setSubmitStatus('idle');
 
   try {
-    // Get the current origin to ensure we're using the correct base URL
-    const baseUrl = window.location.origin;
-    const apiUrl = `${baseUrl}/api/contact`;
-    
-    const response = await fetch(apiUrl, {
+    const response = await fetch('/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
       },
       body: JSON.stringify(formData),
     });
 
-    const responseData = await response.json();
-    
-    if (response.ok && responseData) {
+    if (response.ok) {
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
     } else {
-      throw new Error(responseData?.error || 'Failed to send message');
+      throw new Error('Failed to send message');
     }
   } catch (error) {
     console.error('Error:', error);
     setSubmitStatus('error');
-    
-    // Fallback: Try to open email client as backup
-    if (error instanceof Error && error.message.includes('fetch')) {
-      const subject = encodeURIComponent(`Contact from ${formData.name}`);
-      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-      const mailtoUrl = `mailto:heyitspalakjaiswal24@gmail.com?subject=${subject}&body=${body}`;
-      
-      // Show user the option to use email client
-      if (window.confirm('Unable to send message through the form. Would you like to open your email client instead?')) {
-        window.location.href = mailtoUrl;
-      }
-    }
   } finally {
     setIsSubmitting(false);
     setTimeout(() => setSubmitStatus('idle'), 3000);
@@ -234,16 +215,9 @@ const Contact: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-red-500/20 border border-red-500/40 text-red-400 px-4 py-3 rounded-lg mb-6 text-sm"
+                className="bg-red-500/20 border border-red-500/40 text-red-400 px-4 py-3 rounded-lg mb-6"
               >
-                <p className="font-medium mb-2">Failed to send message.</p>
-                <p>Please try again or contact me directly at:</p>
-                <a 
-                  href="mailto:heyitspalakjaiswal24@gmail.com" 
-                  className="text-red-300 hover:text-red-200 underline"
-                >
-                  heyitspalakjaiswal24@gmail.com
-                </a>
+                Failed to send message. Please try again or contact me directly.
               </motion.div>
             )}
 
