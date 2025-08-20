@@ -1,11 +1,98 @@
-ation.href = mailtoUrl;
-      }
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
+
+const Contact: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [currentAction, setCurrentAction] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+
+  const movingActions = [
+    "Let's collaborate!",
+    "Ready to build?",
+    "Have an idea?",
+    "Need a developer?",
+    "Start a project?"
+  ];
+
+  // Toggle cursor every 500ms
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  // Change action text every 3 seconds
+  useEffect(() => {
+    const actionInterval = setInterval(() => {
+      setCurrentAction(prev => (prev + 1) % movingActions.length);
+    }, 3000);
+    return () => clearInterval(actionInterval);
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
     }
-  } finally {
-    setIsSubmitting(false);
-    setTimeout(() => setSubmitStatus('idle'), 3000);
-  }
-};
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Get the current origin for API calls
+      const apiUrl = `${window.location.origin}/api/contact`;
+      
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error(data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setSubmitStatus('error');
+      
+      // Fallback: Open email client
+      if (window.confirm('Would you like to open your email client to send the message directly?')) {
+        const subject = encodeURIComponent('Contact from Portfolio');
+        const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+        const mailtoUrl = `mailto:heyitspalakjaiswal24@gmail.com?subject=${subject}&body=${body}`;
+        window.location.href = mailtoUrl;
+      }
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
