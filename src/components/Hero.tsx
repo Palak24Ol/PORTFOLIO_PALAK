@@ -102,7 +102,7 @@ const Hero: React.FC = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
             >
               <motion.a
-                href="https://drive.google.com/file/d/1UAE6Ed0EHLKRiX5ls9zCyRjwQIl1-e-R/view?usp=sharing"
+                href="https://drive.google.com/file/d/1-Qq2SDpwpiI0x3x8a9GQtdi2j93UeWrT/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
