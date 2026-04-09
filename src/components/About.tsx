@@ -80,16 +80,16 @@ const About: React.FC = () => {
       bgColor: "from-purple-500/20 to-pink-500/20", 
       borderColor: "border-purple-500/30"
     },
-    {
-      title: "Project Manager",
-      icon: "📋",
-      description: "Leading development teams and managing project lifecycles",
-      bgColor: "from-red-500/20 to-orange-500/20",
-      borderColor: "border-red-500/30"
-    }
-  ];
+     {
+  title: "Good Communication Skills",
+  icon: "🗣️",
+  description: "Conveying ideas clearly, fostering collaboration, and building strong relationships",
+  bgColor: "from-green-500/20 to-emerald-500/20",
+  borderColor: "border-green-500/30"
+}
 
-  // Mouse tracking with throttling
+  ];
+ 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     
@@ -104,7 +104,7 @@ const About: React.FC = () => {
           mouseX.set(x);
           mouseY.set(y);
         }
-      }, 16); // Throttle to ~60fps
+      }, 16);  
     };
 
     const container = containerRef.current;
@@ -117,11 +117,11 @@ const About: React.FC = () => {
     }
   }, [mouseX, mouseY]);
 
-  // Change skill every 5 seconds (much slower)
+  
   useEffect(() => {
     const skillInterval = setInterval(() => {
       setCurrentSkill(prev => (prev + 1) % movingSkills.length);
-    }, 5000); // Increased from 3000 to 5000ms
+    }, 5000); 
 
     return () => clearInterval(skillInterval);
   }, []);
